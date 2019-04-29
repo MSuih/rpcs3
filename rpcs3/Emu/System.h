@@ -172,6 +172,13 @@ enum class msaa_level
 	_auto
 };
 
+enum class zcull_behaviour
+{
+	hardware,
+	always_pass,
+	always_fail,
+};
+
 enum class detail_level
 {
 	minimal,
@@ -465,6 +472,7 @@ struct cfg_root : cfg::node
 		cfg::_enum<video_aspect> aspect_ratio{this, "Aspect ratio", video_aspect::_16_9};
 		cfg::_enum<frame_limit_type> frame_limit{this, "Frame limit", frame_limit_type::none};
 		cfg::_enum<msaa_level> antialiasing_level{this, "MSAA", msaa_level::_auto};
+		cfg::_enum<zcull_behaviour> zcull_behaviour{this, "ZCull Occlusion Query Behavior", zcull_behaviour::hardware};
 
 		cfg::_bool write_color_buffers{this, "Write Color Buffers"};
 		cfg::_bool write_depth_buffer{this, "Write Depth Buffer"};
@@ -479,7 +487,6 @@ struct cfg_root : cfg::node
 		cfg::_bool stretch_to_display_area{this, "Stretch To Display Area"};
 		cfg::_bool force_high_precision_z_buffer{this, "Force High Precision Z buffer"};
 		cfg::_bool strict_rendering_mode{this, "Strict Rendering Mode"};
-		cfg::_bool disable_zcull_queries{this, "Disable ZCull Occlusion Queries", false};
 		cfg::_bool disable_vertex_cache{this, "Disable Vertex Cache", false};
 		cfg::_bool disable_FIFO_reordering{this, "Disable FIFO Reordering", false};
 		cfg::_bool frame_skip_enabled{this, "Enable Frame Skip", false};

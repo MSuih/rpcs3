@@ -9,7 +9,8 @@
 		"sleepTimersAccuracy": "Changes the sleep period accuracy.\n'As Host' uses default accuracy of the underlying operating system, while 'All Timers' attempts to improve it.\n'Usleep Only' limits the adjustments to usleep syscall only.\nCan affect perfomance in unexpected ways.",
 		"vblankRate": "Adjusts the frequency of vertical blanking signals that the emulator sends.\nAffects timing of events which rely on these signals.",
 		"clocksScale": "Changes the scale of emulated system time.\nAffects software which uses system time to calculate things such as dynamic timesteps.",
-		"disabledFromGlobal": "Do not change this setting globally.\nRight-click the game in game list and choose \"Configure\" instead."
+		"disabledFromGlobal": "Do not change this setting globally.\nRight-click the game in game list and choose \"Configure\" instead.",
+		"zcullBehaviour": "Can be used to force occlusion queries to always return certain result. Minor to moderate performance boost.\nMight introduce issues with broken occlusion e.g missing geometry and extreme pop-in.\nAlways pass is more likely to cause overdraw, while always fail is more likely to cause visual issues."
 	},
 	"audio": {
 		"audioOutBox": "XAudio2 is the recommended option and should be used whenever possible.\nOpenAL uses a cross-platform approach and is the next best alternative.",
@@ -68,7 +69,6 @@
 		"debugOutput": "Enables the selected API's inbuilt debugging functionality.\nWill cause severe performance degradation especially with Vulkan.\nOnly useful to developers.\nIf unsure, don't use this option.",
 		"debugOverlay": "Provides a graphical overlay of various debugging information.\nIf unsure, don't use this option.",
 		"logProg": "Dump game shaders to file. Only useful to developers.\nIf unsure, don't use this option.",
-		"disableOcclusionQueries": "Disables running occlusion queries. Minor to moderate performance boost.\nMight introduce issues with broken occlusion e.g missing geometry and extreme pop-in.",
 		"forceCpuBlitEmulation": "Forces emulation of all blit and image manipulation operations on the CPU.\nRequires 'Write Color Buffers' option to also be enabled in most cases to avoid missing graphics.\nSignificantly degrades performance but is more accurate in some cases.\nThis setting overrides the 'GPU texture scaling' option.",
 		"disableVulkanMemAllocator": "Disables the custom Vulkan memory allocator and reverts to direct calls to VkAllocateMemory/VkFreeMemory.",
 		"disableFIFOReordering": "Disables RSX FIFO optimizations completely. Draws are processed as they are received by the DMA puller.",

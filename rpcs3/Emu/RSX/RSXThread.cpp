@@ -2254,7 +2254,7 @@ namespace rsx
 
 	void thread::check_zcull_status(bool framebuffer_swap)
 	{
-		if (g_cfg.video.disable_zcull_queries)
+		if (g_cfg.video.zcull_behaviour != zcull_behaviour::hardware)
 			return;
 
 		bool testing_enabled = zcull_pixel_cnt_enabled || zcull_stats_enabled;
@@ -2288,7 +2288,7 @@ namespace rsx
 
 	void thread::clear_zcull_stats(u32 type)
 	{
-		if (g_cfg.video.disable_zcull_queries)
+		if (g_cfg.video.zcull_behaviour != zcull_behaviour::hardware)
 			return;
 
 		zcull_ctrl->clear(this);
@@ -2296,9 +2296,10 @@ namespace rsx
 
 	void thread::get_zcull_stats(u32 type, vm::addr_t sink)
 	{
-		u32 value = 0;
-		if (!g_cfg.video.disable_zcull_queries)
+		u32 value;
+		if (g_cfg.video.zcull_behaviour == zcull_behaviour::hardware)
 		{
+			value = 0;
 			switch (type)
 			{
 			case CELL_GCM_ZPASS_PIXEL_CNT:
@@ -2314,6 +2315,10 @@ namespace rsx
 				LOG_ERROR(RSX, "Unknown zcull stat type %d", type);
 				break;
 			}
+		}
+		else
+		{
+			value = g_cfg.video.zcull_behaviour == zcull_behaviour::always_pass ? UINT32_MAX : 0;
 		}
 
 		vm::_ref<atomic_t<CellGcmReportData>>(sink).store({ timestamp(), value, 0});

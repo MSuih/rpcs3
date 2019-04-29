@@ -72,7 +72,6 @@ public:
 		ForceHighpZ,
 		StrictRenderingMode,
 		DisableVertexCache,
-		DisableOcclusionQueries,
 		DisableFIFOReordering,
 		StrictTextureFlushing,
 		AnisotropicFilterOverride,
@@ -84,6 +83,7 @@ public:
 		DisableAsyncShaderCompiler,
 		MultithreadedRSX,
 		VBlankRate,
+		ZCullBehaviour,
 
 		// Performance Overlay
 		PerfOverlayEnabled,
@@ -302,7 +302,6 @@ private:
 		{ ForceHighpZ,                { "Video", "Force High Precision Z buffer"}},
 		{ StrictRenderingMode,        { "Video", "Strict Rendering Mode"}},
 		{ DisableVertexCache,         { "Video", "Disable Vertex Cache"}},
-		{ DisableOcclusionQueries,    { "Video", "Disable ZCull Occlusion Queries"}},
 		{ DisableFIFOReordering,      { "Video", "Disable FIFO Reordering"}},
 		{ StrictTextureFlushing,      { "Video", "Strict Texture Flushing"}},
 		{ ForceCPUBlitEmulation,      { "Video", "Force CPU Blit"}},
@@ -316,6 +315,7 @@ private:
 		{ D3D12Adapter,               { "Video", "D3D12", "Adapter"}},
 		{ VulkanAdapter,              { "Video", "Vulkan", "Adapter"}},
 		{ VBlankRate,                 { "Video", "Vblank Rate"}},
+		{ ZCullBehaviour,             { "Video", "ZCull Occlusion Query Behavior"}},
 
 		// Performance Overlay
 		{ PerfOverlayEnabled,       { "Video", "Performance Overlay", "Enabled" } },

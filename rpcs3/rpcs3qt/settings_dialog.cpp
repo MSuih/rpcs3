@@ -1082,6 +1082,9 @@ settings_dialog::settings_dialog(std::shared_ptr<gui_settings> guiSettings, std:
 	xemu_settings->EnhanceComboBox(ui->sleepTimersAccuracy, emu_settings::SleepTimersAccuracy);
 	SubscribeTooltip(ui->sleepTimersAccuracy, json_advanced["sleepTimersAccuracy"].toString());
 
+	xemu_settings->EnhanceComboBox(ui->zcullBehavior, emu_settings::ZCullBehaviour);
+	SubscribeTooltip(ui->zcullBehavior, json_advanced["zcullBehaviour"].toString());
+
 	// Sliders
 
 	EnhanceSlider(emu_settings::VBlankRate, ui->vblank, ui->vblankText, tr("%0 Hz"));
@@ -1519,9 +1522,6 @@ settings_dialog::settings_dialog(std::shared_ptr<gui_settings> guiSettings, std:
 
 	xemu_settings->EnhanceCheckBox(ui->logProg, emu_settings::LogShaderPrograms);
 	SubscribeTooltip(ui->logProg, json_debug["logProg"].toString());
-
-	xemu_settings->EnhanceCheckBox(ui->disableHwOcclusionQueries, emu_settings::DisableOcclusionQueries);
-	SubscribeTooltip(ui->disableHwOcclusionQueries, json_debug["disableOcclusionQueries"].toString());
 
 	xemu_settings->EnhanceCheckBox(ui->forceCpuBlitEmulation, emu_settings::ForceCPUBlitEmulation);
 	SubscribeTooltip(ui->forceCpuBlitEmulation, json_debug["forceCpuBlitEmulation"].toString());

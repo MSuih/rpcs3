@@ -152,6 +152,22 @@ void fmt_class_string<video_resolution>::format(std::string& out, u64 arg)
 }
 
 template <>
+void fmt_class_string<zcull_behaviour>::format(std::string& out, u64 arg)
+{
+	format_enum(out, arg, [](zcull_behaviour value)
+	{
+		switch (value)
+		{
+			case zcull_behaviour::hardware: return "Hardware";
+			case zcull_behaviour::always_pass: return "Always Pass";
+			case zcull_behaviour::always_fail: return "Always Fail";
+		}
+
+		return unknown;
+	});
+}
+
+template <>
 void fmt_class_string<video_aspect>::format(std::string& out, u64 arg)
 {
 	format_enum(out, arg, [](video_aspect value)
