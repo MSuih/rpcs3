@@ -98,6 +98,7 @@ enum class audio_renderer
 	null,
 #ifdef _WIN32
 	xaudio,
+	wasapi,
 #endif
 #ifdef HAVE_ALSA
 	alsa,

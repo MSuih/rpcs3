@@ -87,6 +87,7 @@ target_sources(rpcs3_emu PRIVATE
 	Audio/XAudio2/XAudio27Backend.cpp
 	Audio/XAudio2/XAudio28Backend.cpp
 	Audio/XAudio2/XAudio2Backend.cpp
+	Audio/WASAPI/WASAPIBackend.cpp
 )
 
 if(WIN32)

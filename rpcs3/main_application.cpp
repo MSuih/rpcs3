@@ -24,6 +24,7 @@
 #include "Emu/Audio/AL/OpenALBackend.h"
 #ifdef _WIN32
 #include "Emu/Audio/XAudio2/XAudio2Backend.h"
+#include "Emu/Audio/WASAPI/WASAPIBackend.h"
 #endif
 #ifdef HAVE_ALSA
 #include "Emu/Audio/ALSA/ALSABackend.h"
@@ -139,6 +140,7 @@ EmuCallbacks main_application::CreateCallbacks()
 		case audio_renderer::null: return std::make_shared<NullAudioBackend>();
 #ifdef _WIN32
 		case audio_renderer::xaudio: return std::make_shared<XAudio2Backend>();
+		case audio_renderer::wasapi: return std::make_shared<WASAPIBackend>();
 #endif
 #ifdef HAVE_ALSA
 		case audio_renderer::alsa: return std::make_shared<ALSABackend>();
