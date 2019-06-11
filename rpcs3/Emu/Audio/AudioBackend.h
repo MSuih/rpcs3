@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include <vector>
+
 #include "Utilities/types.h"
 #include "Emu/System.h"
 
@@ -19,6 +21,8 @@ public:
 		IS_PLAYING = 0x2, // Implements IsPlaying
 		GET_NUM_ENQUEUED_SAMPLES = 0x4, // Implements GetNumEnqueuedSamples
 		SET_FREQUENCY_RATIO = 0x8, // Implements SetFrequencyRatio
+		DEVICE_SELECTION = 0x10, // Implements GetAvailableDevices
+		EXCLUSIVE_MODE = 0x20,
 	};
 
 	virtual ~AudioBackend() = default;
@@ -85,6 +89,15 @@ public:
 		return 1.0f;
 	}
 
+	// Returns a list of audio devices that can be used for playing audio
+	// Might return an empty vector if no suitable devices were found
+    // Should be implemented if capabilities & DEVICE_SELECTION
+	virtual std::vector<std::string> GetAvailableDevices()
+	{
+	    fmt::throw_exception("GetAvailableDevices() not implemented");
+	    return {};
+	}
+
 
 	/*
 	 * Helper methods
@@ -145,9 +158,26 @@ public:
 			count++;
 		}
 
+        if (capabilities & DEVICE_SELECTION)
+        {
+            fmt::append(out, "%sDEVICE_SELECTION", count > 0 ? " | " : "");
+            count++;
+        }
+
+        if (capabilities & EXCLUSIVE_MODE)
+        {
+            fmt::append(out, "%sEXCLUSIVE_MODE", count > 0 ? " | " : "");
+            count++;
+        }
+
 		if (count == 0)
 		{
 			fmt::append(out, "NONE");
 		}
+	}
+
+	bool has_custom_device_set() {
+	    std::string s = g_cfg.audio.preferred_audio_device;
+        return !s.empty() || s != "default";
 	}
 };
