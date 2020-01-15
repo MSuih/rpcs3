@@ -59,7 +59,7 @@ void game_list_grid::setIconSize(const QSize& size)
 
 void game_list_grid::addItem(const QPixmap& img, const QString& name, const int& row, const int& col)
 {
-	const int device_pixel_ratio = devicePixelRatio();
+	const qreal device_pixel_ratio = devicePixelRatio();
 
 	// define size of expanded image, which is raw image size + margins
 	QSize exp_size;
