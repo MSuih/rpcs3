@@ -1043,12 +1043,7 @@ void Emulator::Load(const std::string& title_id, bool add_only, bool force_globa
 		LOG_NOTICE(LOADER, "Used configuration:\n%s\n", g_cfg.to_string());
 
 		// Set RTM usage
-		g_use_rtm = utils::has_rtm() && ((utils::has_mpx() && g_cfg.core.enable_TSX == tsx_usage::enabled) || g_cfg.core.enable_TSX == tsx_usage::forced);
-
-		if (g_use_rtm && !utils::has_mpx())
-		{
-			LOG_WARNING(GENERAL, "TSX forced by User");
-		}
+		g_use_rtm = utils::has_rtm() && (g_cfg.core.enable_TSX == tsx_usage::enabled || g_cfg.core.enable_TSX == tsx_usage::forced);
 
 		// Load patches from different locations
 		g_fxo->get<patch_engine>()->append(fs::get_config_dir() + "data/" + m_title_id + "/patch.yml");

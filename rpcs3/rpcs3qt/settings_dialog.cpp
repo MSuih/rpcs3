@@ -204,29 +204,6 @@ settings_dialog::settings_dialog(std::shared_ptr<gui_settings> guiSettings, std:
 	{
 		xemu_settings->EnhanceComboBox(ui->enableTSX, emu_settings::EnableTSX);
 		SubscribeTooltip(ui->gb_tsx, json_cpu_cbo["enableTSX"].toString());
-
-		static const QString tsx_forced = qstr(fmt::format("%s", tsx_usage::forced));
-		static const QString tsx_default = qstr(xemu_settings->GetSettingDefault(emu_settings::EnableTSX));
-
-		// connect the toogled signal so that the stateChanged signal in EnhanceCheckBox can be prevented
-		connect(ui->enableTSX, &QComboBox::currentTextChanged, [this](const QString& text)
-		{
-			if (text == tsx_forced && !utils::has_mpx() && QMessageBox::No == QMessageBox::critical(this, tr("Haswell/Broadwell TSX Warning"), tr(
-				R"(
-					<p style="white-space: nowrap;">
-						RPCS3 has detected you are using TSX functions on a Haswell or Broadwell CPU.<br>
-						Intel has deactivated these functions in newer Microcode revisions, since they can lead to unpredicted behaviour.<br>
-						That means using TSX may break games or even <font color="red"><b>damage</b></font> your data.<br>
-						We recommend to disable this feature and update your computer BIOS.<br><br>
-						Do you wish to use TSX anyway?
-					</p>
-				)"
-			), QMessageBox::Yes, QMessageBox::No))
-			{
-				// Reset if the messagebox was answered with no. This prevents the currentIndexChanged signal in EnhanceComboBox
-				ui->enableTSX->setCurrentText(tsx_default);
-			}
-		});
 	}
 	else
 	{

@@ -154,11 +154,6 @@ std::string utils::get_system_info()
 			result += "-FA";
 		}
 
-		if (!has_mpx())
-		{
-			result += " disabled by default";
-		}
-
 	}
 
 	return result;

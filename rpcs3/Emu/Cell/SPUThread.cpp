@@ -27,9 +27,6 @@
 // Verify AVX availability for TSX transactions
 static const bool s_tsx_avx = utils::has_avx();
 
-// For special case
-static const bool s_tsx_haswell = utils::has_rtm() && !utils::has_mpx();
-
 static FORCE_INLINE bool cmp_rdata(const decltype(spu_thread::rdata)& lhs, const decltype(spu_thread::rdata)& rhs)
 {
 	const v128 a = (lhs[0] ^ rhs[0]) | (lhs[1] ^ rhs[1]);
