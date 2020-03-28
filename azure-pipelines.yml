@@ -23,11 +23,11 @@ jobs:
   pool:
     vmImage: 'ubuntu-latest'
   steps:
-  - task: Cache@0
-    inputs:
-      key: ccache | $(Agent.OS) | $(COMPILER)
-      path: $(CCACHE_DIR)
-    displayName: ccache
+#  - task: Cache@0
+#    inputs:
+#      key: ccache | $(Agent.OS) | $(COMPILER)
+#      path: $(CCACHE_DIR)
+#    displayName: ccache
 
   - bash: |
       docker pull --quiet rpcs3/rpcs3-travis-xenial:1.2
