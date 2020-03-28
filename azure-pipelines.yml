@@ -57,11 +57,11 @@ jobs:
     vmImage: "windows-latest"
 
   steps:
-    - task: Cache@0
-      inputs:
-        key: $(Agent.OS) | $(COMPILER)
-        path: $(CACHE_DIR)
-      displayName: Cache
+#    - task: Cache@0
+#      inputs:
+#        key: $(Agent.OS) | $(COMPILER)
+#        path: $(CACHE_DIR)
+#      displayName: Cache
 
     - bash: .travis/setup-windows.sh
       displayName: Download and unpack dependencies
